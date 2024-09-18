@@ -1,4 +1,77 @@
-# Algorithm Problems: Implementation and Analysis
+# HW4 -- Algorithm Problems -- Implementation and Analysis
+
+# Fibonacci Sequence Implementation
+
+## Code Implementation:
+```python
+def fib(n):
+
+    if n == 0: return 0
+    elif n == 1: return 1
+
+    return fib(n-1) + fib(n-2)
+
+x = fib(5)
+print(x)
+
+```
+
+
+## Recursive Function Breakdown for `fib(5)`
+
+To walk through the Fibonacci sequence as described, let's "step into" the function for `fib(5)` and trace each recursive call without optimization (like memoization). The function calls will follow the structure:
+
+```
+fib(5) -> fib(4) + fib(3)
+        -> (fib(3) + fib(2)) + (fib(2) + fib(1))
+        -> ((fib(2) + fib(1)) + (fib(1) + fib(0))) + ((fib(1) + fib(0)) + 1)
+        -> (((fib(1) + fib(0)) + 1) + (1 + 0)) + ((1 + 0) + 1)
+        -> (((1 + 0) + 1) + (1 + 0)) + ((1 + 0) + 1)
+        -> 5
+```
+
+Each recursive breakdown is like this:
+
+1. `fib(5)` calls `fib(4)` and `fib(3)`
+2. `fib(4)` calls `fib(3)` and `fib(2)`
+3. `fib(3)` calls `fib(2)` and `fib(1)`
+4. `fib(2)` calls `fib(1)` and `fib(0)`
+5. Base cases: `fib(1) = 1` and `fib(0) = 0`
+
+### Full Call Stack for `fib(5)`
+
+The resulting call stack for `fib(5)` is as follows:
+
+- fib(5)
+  - fib(4)
+    - fib(3)
+      - fib(2)
+        - fib(1) -> 1
+        - fib(0) -> 0
+      - fib(1) -> 1
+    - fib(2)
+      - fib(1) -> 1
+      - fib(0) -> 0
+  - fib(3)
+    - fib(2)
+      - fib(1) -> 1
+      - fib(0) -> 0
+    - fib(1) -> 1
+
+This results in a value of `5` for `fib(5)`.
+
+## Time Complexity
+
+The time complexity of the recursive Fibonacci implementation without optimization is **O(2^n)** because each call results in two more recursive calls. There is a significant amount of redundant computation, making it inefficient for large values of `n`.
+
+## Possible Improvements
+
+- **Memoization**: Cache previously computed Fibonacci numbers to avoid redundant calculations. This reduces the time complexity to **O(n)**.
+- **Bottom-up dynamic programming**: Iteratively compute the Fibonacci numbers from `0` to `n`, also leading to **O(n)** time complexity with **O(1)** space if only storing the last two values.
+
+## Conclusion
+
+This problem illustrates the inefficiency of simple recursive solutions to the Fibonacci sequence and highlights potential improvements through dynamic programming.
 
 ## Problem 1: Merging K Sorted Arrays
 
